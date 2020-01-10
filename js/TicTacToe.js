@@ -29,7 +29,6 @@ function rollForTurn() {
 		txt1 = txt1 + "Player 2 rolled [" + pTwo + "]<br><br>";
 		setTimeout(function () { writeMsg(txt1); }, 1000);
 	}
-
 	if (pOne > pTwo) {
 		first = "Player 1";
 		setTimeout(function () { txt1 = txt1 + "Player 1 wins, please choose a square."; }, 2000);
@@ -49,12 +48,10 @@ function startGame() {
 		activePlayer = rollForTurn();
 	}
 	setTimeout(function () { hideGameMsg(); }, 4000);
-
 	var btn = document.getElementById('btnStart');
 	btnDisabled(btn);
 	var btn = document.getElementById('btnStop');
 	stopEnabled(btn);
-
 	var showPlayer = document.getElementById('showPlayer')
 	showPlayer.innerHTML = activePlayer;
 	showPlayer.style.color = "green";
@@ -90,8 +87,6 @@ function stopGame() {
 	var showPlayer = document.getElementById('showPlayer')
 	showPlayer.innerHTML = "Game Stopped";
 	showPlayer.style.color = 'red';
-
-
 	var arrayX = document.getElementsByClassName("X");
 	var arrayO = document.getElementsByClassName("O");
 	for (var i = 0; i < arrayO.length; i++) {
@@ -100,7 +95,6 @@ function stopGame() {
 	for (var i = 0; i < arrayX.length; i++) {
 		arrayX[i].style.transform = "translateY(100%)";
 	}
-
 	document.getElementById('boardState').innerHTML = "";
 }
 
@@ -128,7 +122,7 @@ function saveSettings() {
 	var p2Index = document.getElementById("player2").selectedIndex;
 	var p2Selected = document.getElementById("player2").options;
 	if (p1Selected[p1Index].text == p2Selected[p2Index].text) {
-		alert("Error - Player 1 and Player 2 cannot both be assigned as: " + p1Selected[p1Index].text);
+		alert("Error - Player 1 and Player 2 cannot both be assigned as: " + p1Selected[p1Index].text)
 	} else {
 		document.getElementById('p1Display').innerHTML = p1Selected[p1Index].text;
 		document.getElementById('p2Display').innerHTML = p2Selected[p2Index].text;
@@ -204,7 +198,6 @@ function checkForWinCon() {
 	for (var i in info) {
 		squareArray.push(info[i].charAt(0));
 	}
-
 	checkWinCon1(info, squareArray);
 	checkWinCon2(info, squareArray);
 	checkWinCon3(info, squareArray);
@@ -213,7 +206,6 @@ function checkForWinCon() {
 	checkWinCon6(info, squareArray);
 	checkWinCon7(info, squareArray);
 	checkWinCon8(info, squareArray);
-
 	check4Tie();
 }
 
@@ -249,7 +241,7 @@ function glowBoard(pos) {
 	var index0 = pos[0];
 	var index1 = pos[1];
 	var index2 = pos[2];
-	var squares = document.getElementsByClassName('square');
+	var squares = document.getElementsByClassName('square')
 	for (var i = 0; i < squares.length; i++) {
 		if (i == index0) {
 			var bg1 = squares[i];
@@ -303,17 +295,20 @@ function squareSound() {
 	setTimeout(function () { sound.pause(); }, 400);
 	setTimeout(function () { sound.currentTime = 0; }, 500);
 }
+
 function tieSound() {
 	var sound = document.getElementById("tieGame");
 	var check = document.getElementById('gameMsg').innerHTML;
 	setTimeout(function () { sound.play(); }, 500);
 }
+
 function winSound() {
 	var sound = document.getElementById("winGame");
 	setTimeout(function () { sound.play(); }, 500);
 	setTimeout(function () { sound.pause(); }, 2700);
 	setTimeout(function () { sound.currentTime = 0; }, 2800);
 }
+
 function diceRoll() {
 	var sound = document.getElementById("diceRoll");
 	sound.play();
@@ -337,7 +332,6 @@ function blink() {
 function checkWinCon1(info, squareArray) {
 	var winDetected = "on";
 	var winCon1 = [0, 1, 2];
-
 	for (var i in info) {
 		if (info[i].charAt(0) == "0") {
 			var match0Avatar = info[i].charAt(1);
@@ -349,7 +343,6 @@ function checkWinCon1(info, squareArray) {
 			var match2Avatar = info[i].charAt(1);
 		}
 	}
-
 	if (match0Avatar != undefined && match1Avatar != undefined && match2Avatar != undefined) {
 		if (match0Avatar == match1Avatar && match0Avatar == match2Avatar) {
 			winDetected = "win";
@@ -518,7 +511,6 @@ function square1Animate() {
 	var activePlayer = document.getElementById('showPlayer').innerHTML;
 	if (activePlayer != "Game Stopped") {
 		var square = "0";
-
 		var verdict = recordMoves(square);
 		if (verdict == undefined) {
 			var paintAvatar = determineAvatar();
@@ -528,22 +520,19 @@ function square1Animate() {
 			} else if (paintAvatar == "X") {
 				animateX(selected);
 			}
-
 			var currentMove = "," + square + paintAvatar;
 			recordMove(currentMove);
 			checkForWinCon();
-			avatarPlaced(square, paintAvatar);
-
 			avatarPlaced(square, paintAvatar);
 			squareSound();
 		}
 	}
 }
+
 function square2Animate() {
 	var activePlayer = document.getElementById('showPlayer').innerHTML;
 	if (activePlayer != "Game Stopped") {
 		var square = "1";
-
 		var verdict = recordMoves(square);
 		if (verdict == undefined) {
 			var paintAvatar = determineAvatar();
@@ -553,7 +542,6 @@ function square2Animate() {
 			} else if (paintAvatar == "X") {
 				animateX(selected);
 			}
-
 			var currentMove = "," + square + paintAvatar;
 			recordMove(currentMove);
 			checkForWinCon();
@@ -562,6 +550,7 @@ function square2Animate() {
 		}
 	}
 }
+
 function square3Animate() {
 	var activePlayer = document.getElementById('showPlayer').innerHTML;
 	if (activePlayer != "Game Stopped") {
@@ -575,7 +564,6 @@ function square3Animate() {
 			} else if (paintAvatar == "X") {
 				animateX(selected);
 			}
-
 			var currentMove = "," + square + paintAvatar;
 			recordMove(currentMove);
 			checkForWinCon();
@@ -584,6 +572,7 @@ function square3Animate() {
 		}
 	}
 }
+
 function square4Animate() {
 	var activePlayer = document.getElementById('showPlayer').innerHTML;
 	if (activePlayer != "Game Stopped") {
@@ -597,7 +586,6 @@ function square4Animate() {
 			} else if (paintAvatar == "X") {
 				animateX(selected);
 			}
-
 			var currentMove = "," + square + paintAvatar;
 			recordMove(currentMove);
 			checkForWinCon();
@@ -606,6 +594,7 @@ function square4Animate() {
 		}
 	}
 }
+
 function square5Animate() {
 	var activePlayer = document.getElementById('showPlayer').innerHTML;
 	if (activePlayer != "Game Stopped") {
@@ -619,7 +608,6 @@ function square5Animate() {
 			} else if (paintAvatar == "X") {
 				animateX(selected);
 			}
-
 			var currentMove = "," + square + paintAvatar;
 			recordMove(currentMove);
 			checkForWinCon();
@@ -628,6 +616,7 @@ function square5Animate() {
 		}
 	}
 }
+
 function square6Animate() {
 	var activePlayer = document.getElementById('showPlayer').innerHTML;
 	if (activePlayer != "Game Stopped") {
@@ -641,7 +630,6 @@ function square6Animate() {
 			} else if (paintAvatar == "X") {
 				animateX(selected);
 			}
-
 			var currentMove = "," + square + paintAvatar;
 			recordMove(currentMove);
 			checkForWinCon();
@@ -650,6 +638,7 @@ function square6Animate() {
 		}
 	}
 }
+
 function square7Animate() {
 	var activePlayer = document.getElementById('showPlayer').innerHTML;
 	if (activePlayer != "Game Stopped") {
@@ -663,7 +652,6 @@ function square7Animate() {
 			} else if (paintAvatar == "X") {
 				animateX(selected);
 			}
-
 			var currentMove = "," + square + paintAvatar;
 			recordMove(currentMove);
 			checkForWinCon();
@@ -672,6 +660,7 @@ function square7Animate() {
 		}
 	}
 }
+
 function square8Animate() {
 	var activePlayer = document.getElementById('showPlayer').innerHTML;
 	if (activePlayer != "Game Stopped") {
@@ -685,7 +674,6 @@ function square8Animate() {
 			} else if (paintAvatar == "X") {
 				animateX(selected);
 			}
-
 			var currentMove = "," + square + paintAvatar;
 			recordMove(currentMove);
 			checkForWinCon();
@@ -694,6 +682,7 @@ function square8Animate() {
 		}
 	}
 }
+
 function square9Animate() {
 	var activePlayer = document.getElementById('showPlayer').innerHTML;
 	if (activePlayer != "Game Stopped") {
@@ -707,7 +696,6 @@ function square9Animate() {
 			} else if (paintAvatar == "X") {
 				animateX(selected);
 			}
-
 			var currentMove = "," + square + paintAvatar;
 			recordMove(currentMove);
 			checkForWinCon();
