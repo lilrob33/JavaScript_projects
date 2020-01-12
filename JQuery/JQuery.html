@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+    <script>
+        $(document).ready(function () {
+            $("html").append(
+                "<body>\
+                    <div>\
+                        <h1>I will also use the hide and show function to\
+                            hide this text when using the blur and focus</h1>\
+                        Enter your name: <input type='text'>\
+<br><br>\
+<button id='btn1'>Focus</button>\
+<button id='btn2'>Blur</button>\
+<p style='color:blue'></p>\
+                    </div>\
+            </body>"
+            );
+
+            $(document).ready(function () {
+                $("#btn1").click(function () {
+                    $("input").focus();
+                    $("h1").show();
+                    $("p").html("focus highlights the outline of the box");
+                });
+                $("#btn2").click(function () {
+                    $("input").blur();
+                    $("h1").hide();
+                    $("p").html("blur puts the box as it was");
+                });
+            });
+        });    
+    </script>
+</body>
+
+</html>
